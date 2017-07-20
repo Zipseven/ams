@@ -1,0 +1,79 @@
+<%= form_with(model: customer, local: true) do |form| %>
+  <% if customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul>
+      <% customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :zipcode %>
+    <%= form.text_field :zipcode, id: :customer_zipcode %>
+  </div>
+
+  <div class="field">
+    <!-- <%= form.label :prefecture_id %>
+    <%= form.number_field :prefecture_id, id: :customer_prefecture_id %> -->
+    <%= form.label :prefecture_id, "都道府県" %><br>
+    <%= form.collection_select :prefecture_id, Customer.all, :id, :name, include_blank: true  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_prefecture %>
+    <%= form.text_field :address_prefecture, id: :customer_address_prefecture %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_city %>
+    <%= form.text_field :address_city, id: :customer_address_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_1 %>
+    <%= form.text_field :address_1, id: :customer_address_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_2 %>
+    <%= form.text_field :address_2, id: :customer_address_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_name %>
+    <%= form.text_field :company_name, id: :customer_company_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_name_kana %>
+    <%= form.text_field :company_name_kana, id: :customer_company_name_kana %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tel %>
+    <%= form.text_field :tel, id: :customer_tel %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fax %>
+    <%= form.text_field :fax, id: :customer_fax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_field :note, id: :customer_note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :del_flg %>
+    <%= form.check_box :del_flg, id: :customer_del_flg %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
